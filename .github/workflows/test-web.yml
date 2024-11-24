@@ -10,22 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
+      # Step 2: Install Node.js with npm v10.9.1
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'npm'
 
+      # Step 3: Install dependencies using npm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
+      # Step 4: Build project using npm
       - name: Build project
-        run: pnpm build
+        run: npm run build
