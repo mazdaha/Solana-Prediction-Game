@@ -10,40 +10,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
+      # Step 2: Install Node.js
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'npm' # Use npm for caching dependencies
 
+      # Step 3: Install dependencies using npm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
+      # Step 4: Set up Anchor
       - uses: metadaoproject/setup-anchor@v2
         with:
           anchor-version: '0.30.1'
           node-version: '20'
-          solana-cli-version: '1.18.9'
+          solana-cli-version: '1.18.26'
 
+      # Step 5: Generate new keypair
       - name: Generate new keypair
         run: solana-keygen new --no-bip39-passphrase
 
+      # Step 6: Set Solana target cluster to local
       - name: Set solana target cluster to local
         run: solana config set --url http://localhost:8899
 
+      # Step 7: Check Solana config
       - name: Check solana config
         run: solana config get
 
-      - run: pnpm run anchor build
+      # Step 8: Build the project using npm
+      - name: Build the project
+        run: npm run anchor:build
         shell: bash
 
-      - run: pnpm run anchor test
+      # Step 9: Test the project using npm
+      - name: Test the project
+        run: npm run anchor:test
         shell: bash
