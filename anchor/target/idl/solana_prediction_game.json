@@ -1,0 +1,10 @@
+{
+  "address": "DFzXN3Xv5kUd7wuLwEDHDAdktEfcXpS4T6a9YAuk511y",
+  "metadata": {
+    "name": "solana_prediction_game",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": []
+}

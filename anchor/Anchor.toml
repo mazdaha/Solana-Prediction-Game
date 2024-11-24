@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-solanapredictiongame = "AsjZ3kWAUSQRNt2pZVeJkywhZ6gpLpHZmJjduPmKZDZZ"
+solana_prediction_game = "DFzXN3Xv5kUd7wuLwEDHDAdktEfcXpS4T6a9YAuk511y"
 
 [registry]
 url = "https://api.apr.dev"
